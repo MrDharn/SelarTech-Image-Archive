@@ -138,4 +138,4 @@ const changePasswordController = async(req, res)=>{
     }
 }
 
-module.exports = {userSignUp, userLogin}
+module.exports = {userSignUp, userLogin, changePasswordController}
