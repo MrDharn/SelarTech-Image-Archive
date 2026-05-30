@@ -89,4 +89,53 @@ const userLogin = async(req, res)=> {
     }
 }
 
+//Change Password Controller
+
+const changePasswordController = async(req, res)=>{
+    try{
+        const userId = req.userInfo.id;
+        const {oldPassword, newPassword, confirmPassword} = req.body;
+        //check userId Existence with DB
+
+        const userExistence = await userModel.findById(userId);
+        if(!userExistence) return res.status(404).json({
+            status: "failed",
+            message: "User cannot be found"
+        })
+
+        //check if oldpassword is the same with the one in DB
+        const isPasswordCorrect = await bcrypt.compare(oldPassword, userExistence.password);
+        if(!isPasswordCorrect) return res.status(400).json({
+            status: "failed",
+            message: "Old password is not correct"
+        });
+
+        //check if the newpassword is the same as the confirm password
+
+        if(newPassword !== confirmPassword) return res.status(400).json({
+            status: "failed",
+            message: "Password mismatch"
+        })
+
+        //then hash the new password
+        const salt = await bcrypt.genSalt(10);
+        const hashNewPassword = await bcrypt.hash(newPassword, salt);
+
+        userExistence.password = hashNewPassword;
+        await userExistence.save();
+
+        res.status(200).json({
+            status:"success",
+            message: "Password is Changed successfully!!!"
+        })
+
+    } catch(e){
+        console.error(e)
+        res.status(500).json({
+            status: "failed",
+            message: "Something went wrong"
+        })
+    }
+}
+
 module.exports = {userSignUp, userLogin}
