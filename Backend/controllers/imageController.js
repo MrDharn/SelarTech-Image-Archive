@@ -68,13 +68,20 @@ const getAllImages = async(req, res)=>{
 const deleteImage = async(req, res)=>{
 
     try{
-        const id = req.params.id;
-        const image = await imageModel.findById(id);
+        const idOfImageToDelete = req.params.id;
+        const userId = req.userInfo.id
+        const image = await imageModel.findById(idOfImageToDelete);
         if(!image) return res.status(404).json({
             status: "failed",
             message: "Image can not be found"
         })
         
+        //ensure the admin that want to delete is the uploader
+        if(image.uploadedBy.toString() !== userId) return res.status(400).json({
+            status: "Failed",
+            message: "YOu are not Authorized"
+        })
+
         //Delete from cloudinary
         await cloudinary.uploader.destroy(
             image.publicId
