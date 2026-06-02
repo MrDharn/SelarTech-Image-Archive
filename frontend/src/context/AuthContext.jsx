@@ -31,7 +31,7 @@ function AuthProvider({ children }) {
     if (token) {
       getCurrentUser();
 
-      // setUser(true)
+      setUser(user)
     } 
     
       setLoading(false);
@@ -49,7 +49,7 @@ function AuthProvider({ children }) {
         user,
 
         setUser,
-
+        getCurrentUser,
         loading,
 
         logout,

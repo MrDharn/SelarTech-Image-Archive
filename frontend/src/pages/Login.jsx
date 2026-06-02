@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState , useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
+// import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 const Login = () => {
+  const {user, setUser} = useContext(AuthContext)
+  console.log(user)
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -23,6 +27,8 @@ const Login = () => {
 
       localStorage.setItem("token", response.data.createToken);
       navigate("/dashboard");
+      // getCurrentUser()
+      setUser(user)
     } catch (e) {
       console.error(e);
     }
