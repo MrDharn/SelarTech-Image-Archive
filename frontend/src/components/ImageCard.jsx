@@ -21,18 +21,18 @@ function ImageCard({ image, user, fetchImages }) {
     }
   }
 
-  //Handle Update
-  const handleUpdate = async()=>{
-    const confirmEdit = window.confirm("Do you want to Edit ?");
-    if(!confirmEdit) return;
+  // //Handle Update
+  // const handleUpdate = async()=>{
+  //   const confirmEdit = window.confirm("Do you want to Edit ?");
+  //   if(!confirmEdit) return;
 
-    try{
-
-    } catch(e){
-      console.error(e);
-      alert('You are not authorized')
-    }
-  }
+  //   try{
+  //     await API.patch(`/archive/${image._id}`);
+  //   } catch(e){
+  //     console.error(e);
+  //     alert('You are not authorized')
+  //   }
+  // }
   return (
     <div className="image-card">
       <img src={image.imageUrl} alt={image.title} />
