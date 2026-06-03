@@ -77,7 +77,7 @@ const deleteImage = async(req, res)=>{
         })
         
         //ensure the admin that want to delete is the uploader
-        if(image.uploadedBy.toString() !== userId) return res.status(400).json({
+        if(image.uploadedBy.toString() !== userId)  return res.status(400).json({
             status: "Failed",
             message: "YOu are not Authorized"
         })

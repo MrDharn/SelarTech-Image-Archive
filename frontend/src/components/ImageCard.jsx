@@ -17,9 +17,22 @@ function ImageCard({ image, user, fetchImages }) {
       fetchImages();
     } catch (e) {
       console.error(e);
-      alert("delete Failed");
+      alert("You are not authorized!!");
     }
-  };
+  }
+
+  //Handle Update
+  const handleUpdate = async()=>{
+    const confirmEdit = window.confirm("Do you want to Edit ?");
+    if(!confirmEdit) return;
+
+    try{
+
+    } catch(e){
+      console.error(e);
+      alert('You are not authorized')
+    }
+  }
   return (
     <div className="image-card">
       <img src={image.imageUrl} alt={image.title} />

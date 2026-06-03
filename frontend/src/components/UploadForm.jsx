@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useRef} from "react";
 
 import API from "../services/api";
 
@@ -6,6 +6,7 @@ function UploadForm({ fetchImages }) {
   const [title, setTitle] = useState("");
 
   const [image, setImage] = useState(null);
+  const fileRef = useRef(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +23,10 @@ function UploadForm({ fetchImages }) {
 
         formData,
       );
-
+      if(fileRef.current.value){
+        fileRef.current.value = ""
+      }
+      
       alert("Uploaded");
 
       fetchImages();
@@ -39,7 +43,7 @@ function UploadForm({ fetchImages }) {
         onChange={(e) => setTitle(e.target.value)}
       />
 
-      <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+      <input type="file" onChange={(e) => setImage(e.target.files[0])} ref={fileRef}/>
 
       <button type="submit">Upload</button>
     </form>
