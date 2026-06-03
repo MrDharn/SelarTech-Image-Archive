@@ -88,7 +88,7 @@ const deleteImage = async(req, res)=>{
         )
 
         //DELETE FROM DATABASE
-        await imageModel.findByIdAndDelete(id)
+        await imageModel.findByIdAndDelete(idOfImageToDelete)
 
         res.status(200).json({
             status: "success",

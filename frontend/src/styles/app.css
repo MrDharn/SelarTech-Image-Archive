@@ -302,3 +302,25 @@ button {
     padding: 15px;
   }
 }
+
+/* Delete Image Styles */
+
+.admin-actions{
+
+    margin-top: 15px;
+
+    display: flex;
+
+    gap: 10px;
+}
+
+.admin-actions button{
+
+    padding: 8px 12px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}

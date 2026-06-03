@@ -54,7 +54,7 @@ app.use('/api/v1/', userProfileRoute);
 //connect the server 
 const startServer = async()=>{
     await connectDB()
-    app.listen(PORT, ()=> {
+    app.listen(PORT, '0.0.0.0', ()=> {
         console.log(`The server has started running on the port ${PORT}`);
     })
 }

@@ -47,7 +47,7 @@ function Dashboard() {
 
       <div className="gallery">
         {images.map((image) => (
-          <ImageCard key={image._id} image={image} />
+          <ImageCard key={image._id} image={image} user={user} fetchImages={fetchImages}/>
         ))}
       </div>
     </div>
